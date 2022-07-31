@@ -21,6 +21,9 @@
 				this.curTeam.iconCache = '!';
 				this.curTeam.gen = this.getGen(this.curTeam.format);
 				this.curTeam.dex = Dex.forGen(this.curTeam.gen);
+				if (this.curTeam.format.includes('insurgence')) {
+					this.curTeam.dex = Dex.mod('insurgence');
+				}
 				if (this.curTeam.format.includes('letsgo')) {
 					this.curTeam.dex = Dex.mod('gen7letsgo');
 				}
@@ -688,6 +691,9 @@
 			this.curTeam.iconCache = '!';
 			this.curTeam.gen = this.getGen(this.curTeam.format);
 			this.curTeam.dex = Dex.forGen(this.curTeam.gen);
+			if (this.curTeam.format.includes('insurgence')) {
+				this.curTeam.dex = Dex.mod('insurgence');
+			}
 			if (this.curTeam.format.includes('letsgo')) {
 				this.curTeam.dex = Dex.mod('gen7letsgo');
 			}
@@ -1166,6 +1172,7 @@
 		},
 		renderSet: function (set, i) {
 			var species = this.curTeam.dex.species.get(set.species);
+			var isInsurgence = this.curTeam.format.include('insurgence');
 			var isLetsGo = this.curTeam.format.includes('letsgo');
 			var isBDSP = this.curTeam.format.includes('bdsp');
 			var isNatDex = this.curTeam.format.includes('nationaldex');
@@ -1211,6 +1218,12 @@
 				} else if (this.curTeam.gen < 8 || isNatDex) {
 					buf += '<span class="detailcell"><label>Happiness</label>' + (typeof set.happiness === 'number' ? set.happiness : 255) + '</span>';
 				}
+				/*
+				If changes need to be made to the buttons for features, add them here.
+				As shown with the above's happiness and below's Hidden Power and Dynamax
+				Specifically, allows for more nuanced changes that are separate from the actual gen mechanics.
+				When the time comes, will need to implement synergy burst mechanic here (Maybe)
+				*/
 				buf += '<span class="detailcell"><label>Shiny</label>' + (set.shiny ? 'Yes' : 'No') + '</span>';
 				if (!isLetsGo) {
 					if (this.curTeam.gen === 8 && !isNatDex) {
@@ -1473,6 +1486,9 @@
 			this.curTeam.format = format;
 			this.curTeam.gen = this.getGen(this.curTeam.format);
 			this.curTeam.dex = Dex.forGen(this.curTeam.gen);
+			if (this.curTeam.format.includes('insurgence')) {
+				this.curTeam.dex = Dex.mod('insurgence');
+			}
 			if (this.curTeam.format.includes('letsgo')) {
 				this.curTeam.dex = Dex.mod('gen7letsgo');
 			}
@@ -2592,6 +2608,7 @@
 		updateDetailsForm: function () {
 			var buf = '';
 			var set = this.curSet;
+			var isInsurgence = this.curTeam.format.includes('insurgence');
 			var isLetsGo = this.curTeam.format.includes('letsgo');
 			var isBDSP = this.curTeam.format.includes('bdsp');
 			var isNatDex = this.curTeam.gen === 8 && this.curTeam.format.includes('nationaldex');
@@ -2617,6 +2634,10 @@
 					}
 				}
 				buf += '</div></div>';
+
+				/*
+				Same as the previous note on lines 1221-1226. Basically UI elements are implemented here that are different from the base generation.
+				*/
 
 				if (isLetsGo) {
 					buf += '<div class="formrow"><label class="formlabel">Happiness:</label><div><input type="number" name="happiness" value="70" class="textbox inputform numform" /></div></div>';
@@ -2681,6 +2702,7 @@
 			var set = this.curSet;
 			if (!set) return;
 			var species = this.curTeam.dex.species.get(set.species);
+			var isInsurgence = this.curTeam.format.includes('insurgence');
 			var isLetsGo = this.curTeam.format.includes('letsgo');
 			var isBDSP = this.curTeam.format.includes('bdsp');
 			var isNatDex = this.curTeam.format.includes('nationaldex');
@@ -2758,6 +2780,7 @@
 					if (this.curTeam.gen < 8 || isNatDex) buf += '<span class="detailcell"><label>Happiness</label>' + (typeof set.happiness === 'number' ? set.happiness : 255) + '</span>';
 				}
 				buf += '<span class="detailcell"><label>Shiny</label>' + (set.shiny ? 'Yes' : 'No') + '</span>';
+				//Same as before (Lines 1489-1491 and Line 2680), implement here any custom functionality in the menus not present in the default generation.
 				if (!isLetsGo && (this.curTeam.gen < 8 || isNatDex)) buf += '<span class="detailcell"><label>HP Type</label>' + (set.hpType || 'Dark') + '</span>';
 				if (this.curTeam.gen === 8 && !isBDSP) {
 					if (!species.cannotDynamax) {
