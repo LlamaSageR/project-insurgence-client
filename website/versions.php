@@ -44,8 +44,8 @@ if (!is_array($versions) || !$lastmodified || (time() - $lastmodified > 60*60)) 
 	} else {
 		$since = $versions[0]['commit'];
 	}
-	`GIT_DIR=config/git/Pokemon-Showdown.git git fetch > /dev/null 2>&1`;
-	$commits = array_reverse(explode("\n", `GIT_DIR=config/git/Pokemon-Showdown.git git log --format=oneline ${since}..`));
+	`GIT_DIR=config/git/Project-Insurgence.git git fetch > /dev/null 2>&1`;
+	$commits = array_reverse(explode("\n", `GIT_DIR=config/git/Project-Insurgence.git git log --format=oneline ${since}..`));
 	foreach ($commits as &$i) {
 		if ($i === '') continue;
 		$parts = explode(' ', $i, 2);
