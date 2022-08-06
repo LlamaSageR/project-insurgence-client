@@ -20,10 +20,10 @@
 			if (this.curTeam) {
 				this.curTeam.iconCache = '!';
 				this.curTeam.gen = this.getGen(this.curTeam.format);
-				this.curTeam.dex = Dex.forGen(this.curTeam.gen);
-				if (this.curTeam.format.includes('insurgence')) {
-					this.curTeam.dex = Dex.mod('insurgence');
-				}
+				//this.curTeam.dex = Dex.forGen(this.curTeam.gen);
+				//if (this.curTeam.format.includes('gen6insurgence')) {
+				//	this.curTeam.dex = Dex.mod('gen6insurgence');
+				//}
 				if (this.curTeam.format.includes('letsgo')) {
 					this.curTeam.dex = Dex.mod('gen7letsgo');
 				}
@@ -691,9 +691,9 @@
 			this.curTeam.iconCache = '!';
 			this.curTeam.gen = this.getGen(this.curTeam.format);
 			this.curTeam.dex = Dex.forGen(this.curTeam.gen);
-			if (this.curTeam.format.includes('insurgence')) {
-				this.curTeam.dex = Dex.mod('insurgence');
-			}
+			//if (this.curTeam.format.includes('gen6insurgence')) {
+			//	this.curTeam.dex = Dex.mod('gen6insurgence');
+			//}
 			if (this.curTeam.format.includes('letsgo')) {
 				this.curTeam.dex = Dex.mod('gen7letsgo');
 			}
@@ -1172,7 +1172,7 @@
 		},
 		renderSet: function (set, i) {
 			var species = this.curTeam.dex.species.get(set.species);
-			var isInsurgence = this.curTeam.format.include('insurgence');
+			//var isInsurgence = this.curTeam.format.include('gen6insurgence');
 			var isLetsGo = this.curTeam.format.includes('letsgo');
 			var isBDSP = this.curTeam.format.includes('bdsp');
 			var isNatDex = this.curTeam.format.includes('nationaldex');
@@ -1486,9 +1486,9 @@
 			this.curTeam.format = format;
 			this.curTeam.gen = this.getGen(this.curTeam.format);
 			this.curTeam.dex = Dex.forGen(this.curTeam.gen);
-			if (this.curTeam.format.includes('insurgence')) {
-				this.curTeam.dex = Dex.mod('insurgence');
-			}
+			//if (this.curTeam.format.includes('gen6insurgence')) {
+			//	this.curTeam.dex = Dex.mod('gen6insurgence');
+			//}
 			if (this.curTeam.format.includes('letsgo')) {
 				this.curTeam.dex = Dex.mod('gen7letsgo');
 			}
@@ -2608,7 +2608,7 @@
 		updateDetailsForm: function () {
 			var buf = '';
 			var set = this.curSet;
-			var isInsurgence = this.curTeam.format.includes('insurgence');
+			//var isInsurgence = this.curTeam.format.includes('insurgence');
 			var isLetsGo = this.curTeam.format.includes('letsgo');
 			var isBDSP = this.curTeam.format.includes('bdsp');
 			var isNatDex = this.curTeam.gen === 8 && this.curTeam.format.includes('nationaldex');
@@ -2702,7 +2702,7 @@
 			var set = this.curSet;
 			if (!set) return;
 			var species = this.curTeam.dex.species.get(set.species);
-			var isInsurgence = this.curTeam.format.includes('insurgence');
+			//var isInsurgence = this.curTeam.format.includes('gen6insurgence');
 			var isLetsGo = this.curTeam.format.includes('letsgo');
 			var isBDSP = this.curTeam.format.includes('bdsp');
 			var isNatDex = this.curTeam.format.includes('nationaldex');

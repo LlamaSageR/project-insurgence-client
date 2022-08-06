@@ -507,12 +507,12 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable[gen + 'nfe'].overrideTier = overrideTier;
 			BattleTeambuilderTable[gen + 'nfe'].formatSlices = formatSlices;
 		} else if (isInsurgence) {
-			BattleTeambuilderTable['insurgence'] = {};
-			BattleTeambuilderTable['insurgence'].learnsets = {};
-			BattleTeambuilderTable['insurgence'].tiers = tiers;
-			BattleTeambuilderTable['insurgence'].items = items;
-			BattleTeambuilderTable['insurgence'].overrideTier = overrideTier;
-			BattleTeambuilderTable['insurgence'].formatSlices = formatSlices;
+			BattleTeambuilderTable['gen6insurgence'] = {};
+			BattleTeambuilderTable['gen6insurgence'].learnsets = {};
+			BattleTeambuilderTable['gen6insurgence'].tiers = tiers;
+			BattleTeambuilderTable['gen6insurgence'].items = items;
+			BattleTeambuilderTable['gen6insurgence'].overrideTier = overrideTier;
+			BattleTeambuilderTable['gen6insurgence'].formatSlices = formatSlices;
 		} else if (isLetsGo) {
 			BattleTeambuilderTable['gen7letsgo'] = {};
 			BattleTeambuilderTable['gen7letsgo'].learnsets = {};
@@ -886,14 +886,14 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (minGen === 1) learnsets[id][moveid] = '12' + learnsets[id][moveid];
 		}
 	}
-	const InsurgenceLearnsets = Dex.mod('insurgence').data.Learnsets;
+	const InsurgenceLearnsets = Dex.mod('gen6insurgence').data.Learnsets;
 	for (const id in InsurgenceLearnsets) {
-		const species = Dex.mod('insurgence').species.get(id);
+		const species = Dex.mod('gen6insurgence').species.get(id);
 		if (species.isNonstandard && !['Unobtainable', 'CAP'].includes(species.isNonstandard)) continue;
 		const learnset = InsurgenceLearnsets[id].learnset;
-		BattleTeambuilderTable['insurgence'].learnsets[id] = {};
+		BattleTeambuilderTable['gen6insurgence'].learnsets[id] = {};
 		for (const moveid in learnset) {
-			BattleTeambuilderTable['insurgence'].learnsets[id][moveid] = '6i';
+			BattleTeambuilderTable['gen6insurgence'].learnsets[id][moveid] = '6i';
 		}
 	}
 	const LGLearnsets = Dex.mod('gen7letsgo').data.Learnsets;
@@ -1049,7 +1049,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	// Mods
 	//
 
-	for (const mod of ['gen7letsgo', 'gen8bdsp', 'insurgence']) {
+	for (const mod of ['gen7letsgo', 'gen8bdsp', 'gen6insurgence']) {
 		const modDex = Dex.mod(mod);
 		const modData = modDex.data;
 		const parentDex = Dex.forGen(modDex.gen);
